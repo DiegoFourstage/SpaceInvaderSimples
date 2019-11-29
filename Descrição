@@ -1,0 +1,105 @@
+Commit 06.
+
+Criando a classe Tiro e variaveis, construtor, método pintar.
+Na classe Nave vamos criar um método atirar, dentro do método
+para testar vamos deixar um println "Atirou"
+Na classe SpaceInvaders vamos implementar KeyListener e em 
+seguida adicione seus métodos e vamos dizer no método keyPressed
+se ele for igual a tecla space nave.atirar(). não esqueça de chamar
+o objeto private Nave nave e instaciar no construtor.
+
+Commit 07 - Fazendo a nave atirar
+
+Colocando a posicao de  tiro x e de y da classe Tiro nos paramentro do construtor
+indiceX e indiceY e instanciando no método atirar  na classe Nave e para testar
+na classe SpaceInvaders crie um objeto private Tiro tiro; e no método KeyPressed
+tiro fica igual, tiro nave atirar, pra não dar erro no método paintCompontent
+passe se tiro for diferente de nulo pintar tiro.
+
+commit 08 - Fazendo tiro subir até a posição de y da tela
+
+Criaremos uma variavel velocidade e mais outro método na classe Tiro chamado direcao
+dizeremos no método se posição de y for menor ou igual velocidade chamando no método 
+atualizar da clase SpaceInvaders se tiro for diferente de nulo nave direcao de y, observer
+o tiro ira subir até a posição de y, para poder limpar a tela adicione o super.paintComponent(g)
+no método paintComponent.
+
+Commit 09 - Modificando objeto Tiro para um ArrayList
+Mudaremos o objeto Tiro para um ArrayList para que tiro ao apertar em sequencia o tiro
+não suma, instanciando ao construtor percorrendo o com  o laço for dentro do método paintComponent 
+dando o valor da variavei i para tiro e em seguida pintar o mesmo se faz com o atualizar mais em vez 
+de pintar ira para direçãoY
+
+Commit 10 - Limite de tiros adicionado.
+Criar uma private boolean tiroLimite recebendo no construtor true, e no  método Nave atirar recebe
+false, criar método public boolean limite e retornar a variavel tiroLimite, ir na classe SpaceInvaders
+no método Keypressed e chamar método VK_SPACE && nave.limite(); e ir para o método atualizar da classe SpaceInvaders 
+e adicionar um método nave.movimentar(); em seguida criar o método movimentar na classe Nave e fazer função se tempo 
+for maior ou igual que frames tiroLimite recebe true, tempo passa a ser zero e depois da chaves tempo fica mais mais,
+adicione as seguinte variaveis private tempo, frames e que tempo recebe zero no construtor e frame recebe
+o valor que desejar no construtor.
+
+Commit 11 - Adicionado classe Inimigo, limitando tiros.
+Crie uma nova classe Inimigos adicione construtor com parametro int indiceX e indeceY, crie variaveis private int posicaoX,
+posicaoY, tamanhoX, tamanhoY; posicaoX passa a ser indiceX, posicaoY passa a receber indiceY, coloque o tamanho desejado das
+variaveis no construtor, crie se o método pintar e passe seus valores das variaveis, na classe SpaceInvaders chame o método
+para pintar, não esqueça de chamar o objeto private Inimigos inimigo; e depois instanciando no construtor com sua posicao. 
+Agora iremos remover tiro quando chegar na posição de zero de Y, na classe Tiro criaremos uma método void boleana limite recebendo 
+a posicaoY se for menor ou igual a zero, chamaremos o método dentro da função de tiro na  variavel i na classe SpaceInvaders
+dizendo assim, se tiro na variavel i no método limite abre chaves tiro remove na variavel i, i--; isso fará que ao chegar na
+posicao de zero de Y tiro sera removido.
+
+Commit 12 - Inimigo a um Array e Colisão de Tiro com Inimigo.
+Vamos adicionar o objeto Inimigo inimigo ao um ArrayList para combinar varios inimigos na tela futuramente, ao adicionar o objeto
+vamos instanciar ao o ArrayList ao construtor e depois vamos adicionar o objeto inimigo.add(new Inimigos(600, 50); dentro de um laco 
+for dentro mesmo do construtor, agora iremos adicionar métodos getters das variaveis da classe Inimigo posicaoX, posicaoY, tamanhoX, tamanhoY
+para usarmos no método boolean de colisaoInimigo com parametros Inimigo inimigo na classe tiro e dizer na função se posicaoX for maior ou igual
+posicaoX do inimigo && posicaoX mais tamanhoX for menor ou igual posicao do inimigo mais tamanho do inimigoX dentro da outra função dizer se 
+posicaoX for menor ou igual posicaoY do inimigo mais tamanhoY do inimigo retorna verdadeiro se for false, pula duas chaves return false.
+Agora iremos atualizar na classe SpaceInvaders para usar o método acima, dizeremos depois do i-- } else {
+dentro de um laço for na variavel j a dentro de uma funcao se tiro na variavel i colidir com inimigo com paramentros inimigo na variavel j
+tiro remove na variavel i, inimigos remove na variavel j, j-- e um break;
+
+Commit 13 - Movimento da nave
+Crie se uma variavel int private direcao que o construtor receba valor de zero, no método KeyPressed dizer na funçao se  getKeyCode for igual
+KeyEvent.VK_D direcao recebe valor de 1, na outra funçao KeyEvent.VK_A direcao recebera o valor de -1, para que ao soltar da tecla acionada a nave deva 
+parar, teremos que adicionar no método KeyReleased direcao o valor de zero, tanto a letra D || como a letra A
+Agora na classe Nave no método Movimentar adicionaremos nos paramentros int valor para usar na função, dizer assim se valor for igual a 1 posicaoX += velocidade
+e se velor for igual a -1 posicaoY -= velocidade e em seguida criar variavel velocidade adicionar ao construtor o valor desejavel, para terminar ir na classe SpaceInvaders
+no método atualizar, método que chama movimentar adicionar a variavel direcao dentro dos paramentros.
+
+14 - Movimentando inimigo.
+Para movimentar para direira o inimigo e fazer nascer no inicio, cria se uma variavel velocidade na classe Inimigo, caso não tenha, depois cria se um método
+movimentar, nesse métido vamos dizer que a posiçao de X e += velocidade, e que na funçaõ if direi que se posicaoX for >= que o tamanho da tela no caso aqu no 
+meu 1366, dentro da chaves recebe posicao de X zero e depois das chaves posicao de X recebe ++, para percorrer até o final e assim ficar nascendo todas vez no
+inicio.
+
+15 - Adicionando mais inimigos
+Na classe inimigos vamos alterear o tamanho do inimigo para 45 já na classe SpaceInvaders no contrutor, vamos mudar a posicaoX para 50 + i%20 * 50 e na posicaoY 
+50 + i/20 * 50, execute o jogo observe varios inimigos na tela indo até o final e nascendo na posicao zero.
+
+Commit 16 - Segunda parte da Movimentaçao do inimigo. 
+Vamos fazer outra lógica dos inimigos em vez de ele nascer na posicao Zero vamos fazer ele bater e voltar, após ir descendo conforme a velocidade do inimigos
+na classe Inimigo vamos adicionar a variavel direcao, adicone ao construtor paramentro int direcao e chame a ela mesmo no this, velocidade fica desejavel 
+alterando método movimentar, passando posicaoX += velocidade * direcao, criando outro método trocaDirecao aonde direcao = direcao *= -1; posicao += 20; atualizando
+a classe SpaceInvaders no método atualizar, usando o laço for para percorrer o variavel i do inimigo, se inimigo na variavel i, na posicaoX <= 0 ou || inimigo na
+variavel i na posicaoX >= 1366 - o tamanho do inimigo, outro laço for para percorrer a variavel j de inimigo, inimigo na variavel j trocaDirecao após chaves um break.
+
+Commit 17 - Acrescentando efeito estrelas no fundo da tela.
+Criando uma nova classe TelaFundo, novas variasveis posX, posY, tamX, tamY, aos parametros do construtor int indiceX, indiceY, dizer que posX é = indiceX, posY = indiceY,
+tamX = 10, tamaY = 10, adicionar novo método pintar com paramentros Graphics g, receber g.setColor(Color.DARK_GRAY), g.fillRect(posX, posY, tamX, tamY); classe terminada
+para fazer o efeito das estrelas, ir na classe SpaceInvaders adicionar diretoo ao método pintar TelaFundo telaFundo = new TelaFundo(new Random().nextInt(1366), new Random()
+.nextInt(768)); chamar classe para pintar telaFundo.pintar(g);
+
+Commit 18 - Rodar em todos computadores na mesma velocidade.
+Criando uma variavel a dentro do método run, long tempoInicial = System.currentTimeMills(); long tempoFinal = System.currentTimeMills(); long diferenca = 1000/60 - 
+(temposFinal - tempoInicial); dizer se diferenca for maior que zero, chamando método dorme recebendo a variavel  diferenca, diferenca também é adicionado nos 
+paramentros do método public void dorme (long diferenca){};
+
+Commit 19 - Condiçao de vitória do jogador.
+Criar variavel boolean ganhou começando o jogo no construtor como false, na classe SpaceInvaders no método update dizer se quantidades de inimigos for igual a zero, 
+variavel boolean ganhou recebe true, criar condição no método paintCompnent se player ganhou frase em branco escrita Você ganhou !!! Criar variável private 
+Font mensagemGanhou = new Font ("Consolas", font.BOLD, 20); na condição g.setColor(Color.Blue); g.setFont(mensagemGanhou); g.drawString("Você ganhou !!!", 550, 500);
+
+
+
